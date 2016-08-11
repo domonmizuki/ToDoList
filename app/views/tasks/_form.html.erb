@@ -12,26 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :due_date %><br>
+    <%= f.label :"due_date" %><br>
     <%= f.date_select :due_date %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.text_field :category_id %>
+    <%= f.label :"category" %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :categoryname %>
   </div>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :"name" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :done %><br>
+    <%= f.label :"done" %><br>
     <%= f.check_box :done %>
   </div>
   <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.label :"user" %><br>
+    <%= f.collection_select :user_id, User.all, :id, :username %>
+
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "creste" %>
   </div>
 <% end %>
