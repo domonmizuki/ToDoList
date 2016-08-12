@@ -1,4 +1,4 @@
-<%= form_for(@task) do |f| %>
+﻿<%= form_for(@task) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -12,27 +12,27 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :"due_date" %><br>
+    <%= f.label :"期日" %><br>
     <%= f.date_select :due_date %>
   </div>
   <div class="field">
-    <%= f.label :"category" %><br>
+    <%= f.label :"カテゴリー" %><br>
     <%= f.collection_select :category_id, Category.all, :id, :categoryname %>
   </div>
   <div class="field">
-    <%= f.label :"name" %><br>
+    <%= f.label :"名前" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :"done" %><br>
+    <%= f.label :"終わった" %><br>
     <%= f.check_box :done %>
   </div>
   <div class="field">
-    <%= f.label :"user" %><br>
+    <%= f.label :"ユーザー" %><br>
     <%= f.collection_select :user_id, User.all, :id, :username %>
 
   </div>
   <div class="actions">
-    <%= submit_tag "creste" %>
+    <%= submit_tag "作る" %>
   </div>
 <% end %>

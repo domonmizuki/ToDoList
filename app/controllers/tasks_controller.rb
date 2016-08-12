@@ -1,4 +1,4 @@
-class TasksController < ApplicationController
+﻿class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   # GET /tasks
@@ -61,6 +61,20 @@ class TasksController < ApplicationController
     end
   end
 
+  def search
+    @search_value= params['search']['name']
+    @search_user= params['search']['user']
+    @search_category= params['search']['category']
+    @tasks= Task.where("name LIKE '%#{@search_value}%'")
+    if @search_user.present?
+      @tasks= tasks.where(user_id: @search_user)
+    end
+    if @search_category.present?
+      @tasks= tasks.where(category_id: @search_category)
+    end
+    render :index
+    end
+   
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -69,6 +83,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:due_date, :category_id, :name, :done, :user_id)
+      params.require(:task).permit(:done, :due_date, :name, :category_id, :user_id)
     end
 end
